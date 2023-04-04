@@ -87,13 +87,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 if ($error_code === 0) {
-
-
-    // Capturar la salida del script another_php_file.php
+    $create_mail = true;
+    // se genera el token
     ob_start();
     require $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/createActivationToken/index.php';
     $response = ob_get_clean();
-
+// Cerrar la sentencia y la conexión
+$stmt->close();
+$conn->close();
 
 } 
+
+
 echo json_encode(array("error_code" => $error_code));

@@ -20,17 +20,16 @@ if (!$result) {
     $error_code = 10; // Error al insertar o reemplazar el token en la base de datos
 }
 
-// Cerrar la sentencia y la conexión
-$stmt->close();
-$conn->close();
+
 
 if ($error_code === 0) {
 
-
-    // Capturar la salida del script another_php_file.php
-    ob_start();
-    require $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/activationMail/index.php';
-    $response = ob_get_clean();
-
+    if (isset($create_mail))
+    {
+        // Capturar la salida del script another_php_file.php
+        ob_start();
+        require $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/activationMail/index.php';
+        $response = ob_get_clean();
+    }
 
 } 
