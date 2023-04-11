@@ -6,9 +6,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/connection.php';
 // Verificar que se haya enviado una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input = file_get_contents('php://input');
+    $data = json_decode($input, true);
 
-    $data = base64_decode($input);
-    $data = json_decode($data, true);
     if (isset($data['usersUpdateData']))
     {
         $usersUpdateData = $data['usersUpdateData'];
@@ -25,13 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_error = false;
             // Recorrer el array de objetos usuario
             foreach ($usersUpdateData as $user) {
-              
                 // Verificar si el objeto tiene las keys "id" y "transform", y si sus tipos son correctos
-                if (isset($user['id']) && is_int($user['id']) && isset($user['transform'])) {
+                if (isset($user['id']) && is_int($user['id']) && isset($user['transform']) && is_string($user['transform'])) {
                     // Extraer la información del objeto usuario
                     $id = $user['id'];
                     $transform = $user['transform'];
-                    $transform = json_encode($transform);
+
 
                     // Vincular los parámetros a la consulta SQL
                     $stmt->bind_param("si", $transform, $id);
