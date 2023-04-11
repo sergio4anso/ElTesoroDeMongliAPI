@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/connection.php';
 // Verificar que se haya enviado una solicitud POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Prepara la consulta SQL
-    $sql = "SELECT id, nickname, last_login, transform FROM users WHERE active = 1";
+    $sql = "SELECT id, nickname, transform FROM users WHERE active = 1 and transform is not null";
 
     // Realiza la consulta
     $result = $conn->query($sql);
