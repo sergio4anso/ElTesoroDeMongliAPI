@@ -25,13 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $update_error = false;
             // Recorrer el array de objetos usuario
             foreach ($usersUpdateData as $user) {
-                print_r($user);
+              
                 // Verificar si el objeto tiene las keys "id" y "transform", y si sus tipos son correctos
                 if (isset($user['id']) && is_int($user['id']) && isset($user['transform'])) {
                     // Extraer la información del objeto usuario
                     $id = $user['id'];
                     $transform = $user['transform'];
-
+                    $transform = json_encode($transform);
 
                     // Vincular los parámetros a la consulta SQL
                     $stmt->bind_param("si", $transform, $id);
