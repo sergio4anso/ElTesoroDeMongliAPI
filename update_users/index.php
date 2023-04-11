@@ -7,7 +7,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/connection.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $input = file_get_contents('php://input');
     $data = json_decode($input, true);
-
+    $data = base64_decode($data);
+    $data = json_decode($data);
     if (isset($data['usersUpdateData']))
     {
         $usersUpdateData = $data['usersUpdateData'];
