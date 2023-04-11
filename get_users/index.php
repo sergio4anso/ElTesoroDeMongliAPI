@@ -17,8 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Almacena los registros en el array $users y convierte 'id' en entero
         while ($row = $result->fetch_assoc()) {
-            $row['id'] = intval($row['id']); // Convierte 'id' en entero
-            $users[] = $row;
+            $new_user = array(
+                'id' => intval($row['id']),
+                'nickname' => $row['nickname'],
+                'transform' => json_decode($row['transform'], true)
+            );
+            $users[] = $new_user;
         }
 
         // Prepara la respuesta en formato JSON
