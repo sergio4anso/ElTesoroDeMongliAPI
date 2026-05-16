@@ -1,8 +1,8 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/config_loader.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/PHPMailer/src/PHPMailer.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/PHPMailer/src/SMTP.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/PHPMailer/src/Exception.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/config_loader.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/PHPMailer/src/PHPMailer.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/PHPMailer/src/SMTP.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/ElTesoroDeMongliAPI/PHPMailer/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
