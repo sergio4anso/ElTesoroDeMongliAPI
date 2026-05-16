@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    mail VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    nickname VARCHAR(20) NOT NULL UNIQUE,
+    active TINYINT(1) NOT NULL DEFAULT 0,
+    transform JSON NULL,
+    last_login DATETIME NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS access_tokens (
+    user_id INT UNSIGNED NOT NULL PRIMARY KEY,
+    token CHAR(64) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_access_tokens_user
+        FOREIGN KEY (user_id) REFERENCES users(id)
+        ON DELETE CASCADE,
+    INDEX idx_access_tokens_token (token)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
